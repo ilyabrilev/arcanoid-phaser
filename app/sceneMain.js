@@ -52,14 +52,24 @@ class SceneMain extends Phaser.Scene {
     {
         if (this.ball.y > 600)
         {
-            this.ball.y = 10;
-            this.ball.disableBody(true, true);
-            console.log('game over');
+            console.log(session.lives);
+            if (session.lives >= 0) {
+                Ball.ResetBall(this.ball, game);
+                Paddle.ResetPaddle(this.paddle, game);
+                session.lives--;
+            }
+            else {
+                this.ball.y = 10;
+                this.ball.disableBody(true, true);
+                console.log('game over');
+            }
         }
     }
 
     hitBrick(ball, brick)
     {
         brick.disableBody(true, true);
+        session.score += 10;
+        console.log(session.score);
     }
 }

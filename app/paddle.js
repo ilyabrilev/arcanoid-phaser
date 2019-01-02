@@ -36,4 +36,9 @@ class Paddle {
         }
     }
 
+    static ResetPaddle(paddle, game) {
+        paddle.x = game.config.width/2;
+        paddle.y = game.config.height - 10;
+    }
+
 }

@@ -9,6 +9,10 @@ class Ball {
         return ball;
     }
 
-
-
+    static ResetBall(ball, _game) {
+        ball.x = _game.config.width/2;
+        ball.y = _game.config.height - 27;
+        ball.setVelocity(0, 0);
+        ball.setData('onPaddle', true);
+    }
 }

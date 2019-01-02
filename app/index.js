@@ -1,4 +1,5 @@
 var game;
+var session;
 
 window.onload = function() {
 
@@ -22,6 +23,7 @@ window.onload = function() {
         }
     }
 
+    session = new GameSession();
     game = new Game();
 
 };
