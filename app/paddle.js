@@ -12,7 +12,7 @@ class Paddle {
         return paddle;
     }
 
-    static hitPaddle(ball, paddle)
+    static HitPaddle(ball, paddle)
     {
         let diff = 0;
 

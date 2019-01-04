@@ -1,6 +1,34 @@
 class GameSession {
-    constructor(_lives = 3) {
+    constructor(_inputLives = 3) {
         this.score = 0;
-        this.lives = _lives;
+        this.lives = _inputLives;
     }
+
+    get lives() {
+        return this._lives;
+    }
+
+    set lives(value) {
+        this._lives = value;
+        if (emitter) {
+            if (this._lives >= 0) {
+                emitter.emit(msgs.LIVESS_UPDATED, this._lives);
+            }
+            else {
+                emitter.emit(msgs.GAME_OVER);
+            }
+        }
+    }
+
+    get score() {
+        return this._score;
+    }
+
+    set score(value) {
+        this._score = value;
+        if (emitter) {
+            emitter.emit(msgs.SCORE_UPDATED, this._score);
+        }
+    }
+
 }

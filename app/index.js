@@ -1,5 +1,8 @@
 var game;
 var session;
+var emitter;
+var msgs;
+var controller;
 
 window.onload = function() {
 
@@ -24,6 +27,7 @@ window.onload = function() {
     }
 
     session = new GameSession();
+    msgs = new EmitterMsgs();
     game = new Game();
 
 };
