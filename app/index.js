@@ -17,7 +17,11 @@ window.onload = function() {
                 gravity: { y: 200 }
             }
         },
-        scene: [ new SceneMain() ],
+        scene: [
+            new SceneTitle(),
+            new SceneMain(),
+            new SceneGameOver()
+        ],
     };
 
     class Game extends Phaser.Game {

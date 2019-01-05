@@ -67,7 +67,7 @@ class SceneMain extends Phaser.Scene {
             else {
                 this.ball.y = 10;
                 this.ball.disableBody(true, true);
-                console.log('game over');
+                this.scene.start('SceneGameOver');
             }
         }
     }

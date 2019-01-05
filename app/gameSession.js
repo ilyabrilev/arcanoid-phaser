@@ -1,5 +1,5 @@
 class GameSession {
-    constructor(_inputLives = 3) {
+    constructor(_inputLives = 0) {
         this.score = 0;
         this.lives = _inputLives;
     }
