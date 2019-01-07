@@ -10,8 +10,8 @@ class SceneMain extends Phaser.Scene {
         this.load.image('sky', 'assets/sky.png');
         this.load.image('ball', 'assets/ball-casual.png');
         this.load.image('paddle', 'assets/paddle.png');
-        this.load.image('brick1', 'assets/brick1.png');
-        this.load.image('brick2', 'assets/brick2.png');
+        this.load.image('stripedBrick', 'assets/stripedBrick.png');
+        this.load.image('orangeBrick', 'assets/orangeBrick.png');
     }
 
     create()
@@ -34,6 +34,9 @@ class SceneMain extends Phaser.Scene {
         this.bricks = this.LevelBuild();
         this.ball = new Ball(this, game);
         this.paddle = new Paddle(this, game);
+
+
+        console.log(this.bricks);
 
         this.physics.add.collider(this.ball, this.paddle, this.paddle.HitPaddle, null, this.paddle);
         this.physics.add.collider(this.ball, this.bricks, this.HitBrick, null, this);
@@ -60,17 +63,18 @@ class SceneMain extends Phaser.Scene {
 
     HitBrick(ball, brick)
     {
-        brick.disableBody(true, true);
-        session.score += 10;
+        brick.HitBrick(ball);
     }
 
     LevelBuild()
     {
-        return this.physics.add.staticGroup().createMultiple([
-            { key: 'brick1', frame: 0, repeat: 10, setXY: { x: 84, y: 148, stepX: 50 } },
-            { key: 'brick2', frame: 0, repeat: 10, setXY: { x: 84, y: 148 + 27, stepX: 50 } },
-        ]);
-
+        let bricks = this.physics.add.staticGroup();
+        for (let i = 0; i < 11; i++)
+        {
+            new OrangeBrick(bricks, this, 84 + i*50, 148);
+            new StripedBrick(bricks, this, 84 + i*50, 148 + 27);
+        }
+        return bricks;
     }
 
     RegisterInput() {
