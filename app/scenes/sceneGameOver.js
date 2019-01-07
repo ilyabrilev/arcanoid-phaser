@@ -15,6 +15,6 @@ class SceneGameOver extends AbstractSceneTitle {
     startBtnPressed()
     {
         session = new GameSession();
-        this.scene.start('SceneMain');
+        this.scene.start('Level1');
     }
 }

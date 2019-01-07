@@ -6,6 +6,7 @@ class EmitterMsgs {
         this.SET_LIVES = 'setLives';
         this.LIVESS_UPDATED = 'livesUpdated';
         this.GAME_OVER = 'gameOver';
+        this.GAME_PAUSED = 'gamePaused';
     }
 
 }

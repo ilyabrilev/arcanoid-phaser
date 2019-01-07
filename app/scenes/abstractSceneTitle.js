@@ -28,6 +28,6 @@ class AbstractSceneTitle extends Phaser.Scene {
 
     startBtnPressed()
     {
-        this.scene.start('SceneMain');
+        this.scene.start('Level1');
     }
 }

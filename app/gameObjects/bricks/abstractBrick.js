@@ -3,6 +3,7 @@ class AbstractBrick extends Phaser.Physics.Arcade.Sprite{
     constructor(brickCollection, scene, x, y, key) {
         super(scene, x, y, key);
 
+        this.setOrigin(0,0);
         this.scoreCost = 10;
 
         if (brickCollection) {

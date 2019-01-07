@@ -19,8 +19,9 @@ window.onload = function() {
         },
         scene: [
             new SceneTitle(),
-            new SceneMain(),
-            new SceneGameOver()
+            new Level1(),
+            new SceneGameOver(),
+            new PauseScene()
         ],
     };
 
