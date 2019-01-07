@@ -32,27 +32,13 @@ class SceneMain extends Phaser.Scene {
         this.scoreBox.y = 10;
 
         this.bricks = this.LevelBuild();
-        this.ball = Ball.GetBall(this, game);
-        this.paddle = Paddle.GetPaddle(this, game);
+        this.ball = new Ball(this, game);
+        this.paddle = new Paddle(this, game);
 
-        this.physics.add.collider(this.ball, this.paddle, Paddle.HitPaddle, null, this);
+        this.physics.add.collider(this.ball, this.paddle, this.paddle.HitPaddle, null, this.paddle);
         this.physics.add.collider(this.ball, this.bricks, this.HitBrick, null, this);
 
-        this.input.on('pointermove', function (pointer) {
-            this.paddle.x = Phaser.Math.Clamp(pointer.x, 52, 748);
-            if (this.ball.getData('onPaddle'))
-            {
-                this.ball.x = this.paddle.x;
-            }
-        }, this);
-
-        this.input.on('pointerup', function (pointer) {
-            if (this.ball.getData('onPaddle'))
-            {
-                this.ball.setVelocity(-200, -200);
-                this.ball.setData('onPaddle', false);
-            }
-        }, this);
+        this.RegisterInput();
     }
 
     update()
@@ -60,8 +46,8 @@ class SceneMain extends Phaser.Scene {
         if (this.ball.y > 600)
         {
             if (session.lives > 0) {
-                Ball.ResetBall(this.ball, game);
-                Paddle.ResetPaddle(this.paddle, game);
+                this.ball.ResetBall();
+                this.paddle.ResetPaddle();
                 session.lives--;
             }
             else {
@@ -85,5 +71,24 @@ class SceneMain extends Phaser.Scene {
             { key: 'brick2', frame: 0, repeat: 10, setXY: { x: 84, y: 148 + 27, stepX: 50 } },
         ]);
 
+    }
+
+    RegisterInput() {
+
+        this.input.on('pointermove', function (pointer) {
+            this.paddle.x = Phaser.Math.Clamp(pointer.x, 32, game.config.width - 32);
+            if (this.ball.getData('onPaddle'))
+            {
+                this.ball.x = this.paddle.x;
+            }
+        }, this);
+
+        this.input.on('pointerup', function (pointer) {
+            if (this.ball.getData('onPaddle'))
+            {
+                this.ball.setVelocity(-200, -200);
+                this.ball.setData('onPaddle', false);
+            }
+        }, this);
     }
 }

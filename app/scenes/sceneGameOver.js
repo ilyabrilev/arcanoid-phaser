@@ -12,4 +12,9 @@ class SceneGameOver extends AbstractSceneTitle {
         this.text1.setOrigin(0.5, 0.5);
     }
 
+    startBtnPressed()
+    {
+        session = new GameSession();
+        this.scene.start('SceneMain');
+    }
 }
