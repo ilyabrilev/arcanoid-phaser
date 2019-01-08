@@ -20,8 +20,10 @@ window.onload = function() {
         scene: [
             new SceneTitle(),
             new Level1(),
+            new Level2(),
             new SceneGameOver(),
-            new PauseScene()
+            new PauseScene(),
+            new SceneGameVictory()
         ],
     };
 
