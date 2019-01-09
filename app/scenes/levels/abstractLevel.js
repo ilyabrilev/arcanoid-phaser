@@ -16,14 +16,22 @@ class AbstractLevel extends Phaser.Scene {
         this.load.image('paddle', 'assets/paddle.png');
         this.load.image('stripedBrick', 'assets/stripedBrick.png');
         this.load.image('orangeBrick', 'assets/orangeBrick.png');
-
         this.load.image('pauseBtn', 'assets/ui/buttons/pause-btn.png');
+
+        this.load.image('toggle-back', 'assets/ui/toggles/toggles/3.png');
+        this.load.image('sfx_on', 'assets/ui/toggles/icons/sfx_on.png');
+        this.load.image('sfx_off', 'assets/ui/toggles/icons/sfx_off.png');
+
+        this.load.audio('click', ['assets/sounds/click.mp3', 'assets/sounds/click.ogg']);
+        this.load.audio('dland', ['assets/sounds/dland_hint.mp3', 'assets/sounds/dland_hint.ogg']);
+        this.load.audio('bhit', ['assets/sounds/border-hit.mp3', 'assets/sounds/border-hit.ogg']);
     }
 
     create()
     {
         emitter = new Phaser.Events.EventEmitter();
         controller = new Controller(session, emitter);
+        this.mediaManager = new MediaManager(this);
 
         this.keyP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
 
@@ -40,10 +48,12 @@ class AbstractLevel extends Phaser.Scene {
         this.scoreBox.y = 10;
 
         this.pauseButton = new PauseButton(this, this.sceneName);
-        this.pauseButton.back.displayWidth = 30;
-        this.pauseButton.back.scaleY = this.pauseButton.back.scaleX;
         this.pauseButton.x = game.config.width - 30;
         this.pauseButton.y = 60;
+
+        this.sfxBtn = new SfxBtn(this);
+        this.sfxBtn.x = game.config.width - 30;
+        this.sfxBtn.y = 60 + 40;
 
         this.bricks = this.LevelBuild();
 
@@ -52,12 +62,17 @@ class AbstractLevel extends Phaser.Scene {
 
         this.physics.add.collider(this.ball, this.paddle, this.paddle.HitPaddle, null, this.paddle);
         this.physics.add.collider(this.ball, this.bricks, this.HitBrick, null, this);
+        this.physics.world.on('worldbounds', this.onWorldBounds);
 
         this.RegisterInput();
 
         emitter.on(msgs.GAME_PAUSED, this.gamePaused, this);
         emitter.on(msgs.LEVEL_COMPLETED, this.startNextLevel, this);
         //emitter.on(msgs.LEVEL_BOMB_DROPPED, this.startNextLevel, this);
+    }
+
+    onWorldBounds(body) {
+        emitter.emit(msgs.PLAY_SOUND, 'bhit', 0.25);
     }
 
     gamePaused() {

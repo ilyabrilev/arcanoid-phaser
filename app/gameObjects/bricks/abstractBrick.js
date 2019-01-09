@@ -15,6 +15,7 @@ class AbstractBrick extends Phaser.Physics.Arcade.Sprite{
     HitBrick(ball)
     {
         this.disableBody(true, true);
+        emitter.emit(msgs.PLAY_SOUND, 'click');
         session.score += this.scoreCost;
     }
 

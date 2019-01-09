@@ -2,6 +2,8 @@ class GameSession {
     constructor(_inputLives = 1) {
         this.score = 0;
         this.lives = _inputLives;
+        this.soundOn = false;
+        this.musicOn = false;
     }
 
     get lives() {

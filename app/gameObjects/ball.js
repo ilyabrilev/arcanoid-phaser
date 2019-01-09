@@ -9,6 +9,7 @@ class Ball extends Phaser.Physics.Arcade.Sprite {
         this.setCollideWorldBounds(true);
         this.body.allowGravity = false;
         this.body.setBounce(1);
+        this.body.onWorldBounds = true;
         this.setData('onPaddle', true);
     }
 

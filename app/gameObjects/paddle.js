@@ -13,6 +13,8 @@ class Paddle extends Phaser.Physics.Arcade.Sprite {
 
     HitPaddle(ball)
     {
+        emitter.emit(msgs.PLAY_SOUND, 'dland', 0.10);
+
         let diff = 0;
 
         if (ball.x < this.x)
