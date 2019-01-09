@@ -7,12 +7,13 @@ class Level1 extends AbstractLevel {
 
     LevelBuild()
     {
+        let lc = this.GetLevelBuildConsts();
         let bricks = this.physics.add.staticGroup();
-        for (let i = 0; i < 12; i++)
+        for (let i = 0; i < lc.yBrickCount; i++)
         {
-            new GenericBrick(bricks, this, 75 + i*46, 148, 'orangeBrick');
-            new StripedBrick(bricks, this, 75 + i*46, 148 + 27);
-            new GenericBrick(bricks, this, 75 + i*46, 148 + 27*2, 'orangeBrick');
+            new GenericBrick(bricks, this, lc.xOffset + i*lc.bW, lc.yOffset, 'orangeBrick');
+            new StripedBrick(bricks, this, lc.xOffset + i*lc.bW, lc.yOffset + lc.bH);
+            new GlassBrick(bricks, this, lc.xOffset + i*lc.bW, lc.yOffset + lc.bH*2, 'orangeBrick');
         }
         return bricks;
     }

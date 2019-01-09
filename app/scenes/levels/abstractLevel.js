@@ -16,8 +16,9 @@ class AbstractLevel extends Phaser.Scene {
         this.load.image('paddle', 'assets/paddle.png');
         this.load.image('stripedBrick', 'assets/stripedBrick.png');
         this.load.image('orangeBrick', 'assets/orangeBrick.png');
-        this.load.image('pauseBtn', 'assets/ui/buttons/pause-btn.png');
+        this.load.image('glassBrick', 'assets/glassBrick.png');
 
+        this.load.image('pauseBtn', 'assets/ui/buttons/pause-btn.png');
         this.load.image('toggle-back', 'assets/ui/toggles/toggles/3.png');
         this.load.image('sfx_on', 'assets/ui/toggles/icons/sfx_on.png');
         this.load.image('sfx_off', 'assets/ui/toggles/icons/sfx_off.png');
@@ -68,7 +69,7 @@ class AbstractLevel extends Phaser.Scene {
 
         emitter.on(msgs.GAME_PAUSED, this.gamePaused, this);
         emitter.on(msgs.LEVEL_COMPLETED, this.startNextLevel, this);
-        //emitter.on(msgs.LEVEL_BOMB_DROPPED, this.startNextLevel, this);
+        emitter.on(msgs.LEVEL_BOMB_DROPPED, this.explodeEverything, this);
     }
 
     onWorldBounds(body) {
@@ -81,6 +82,13 @@ class AbstractLevel extends Phaser.Scene {
             this.scene.launch('PauseScene');
             this.scene.pause();
         }
+    }
+
+    explodeEverything() {
+        this.bricks.getChildren().forEach(function (brick) {
+            brick.HitBrick(null);
+        });
+        setTimeout(this.CheckLevelPassed, 250, this)
     }
 
     startNextLevel() {
@@ -149,5 +157,15 @@ class AbstractLevel extends Phaser.Scene {
                 this.ball.setData('onPaddle', false);
             }
         }, this);
+    }
+
+    GetLevelBuildConsts() {
+        let lc = {};
+        lc.bW = 48;
+        lc.bH = 24;
+        lc.yOffset = 148;
+        lc.yBrickCount = 12;
+        lc.xOffset = Math.round((game.config.width - lc.bW*lc.yBrickCount)/2);
+        return lc;
     }
 }

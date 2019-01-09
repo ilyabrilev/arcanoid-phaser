@@ -5,6 +5,8 @@ class AbstractBrick extends Phaser.Physics.Arcade.Sprite{
 
         this.setOrigin(0,0);
         this.scoreCost = 10;
+        this.displayWidth = 48;
+        this.scaleY = this.scaleX;
 
         if (brickCollection) {
             brickCollection.add(this);
