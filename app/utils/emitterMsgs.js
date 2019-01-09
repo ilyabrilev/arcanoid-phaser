@@ -9,6 +9,7 @@ class EmitterMsgs {
         this.GAME_PAUSED = 'gamePaused';
         this.LEVEL_COMPLETED = 'levelCompleted';
         this.LEVEL_BOMB_DROPPED = 'levelBombDropped';
+        this.EXPLODE_EXPOSIVE = 'explodeExplosive';
 
         this.PLAY_SOUND = 'playSound';
     }
