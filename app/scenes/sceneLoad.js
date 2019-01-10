@@ -33,6 +33,9 @@ class SceneLoad extends Phaser.Scene {
         this.load.audio('click', ['assets/sounds/click.mp3', 'assets/sounds/click.ogg']);
         this.load.audio('dland', ['assets/sounds/dland_hint.mp3', 'assets/sounds/dland_hint.ogg']);
         this.load.audio('bhit', ['assets/sounds/border-hit.mp3', 'assets/sounds/border-hit.ogg']);
+
+        this.load.image('minus_life', 'assets/powerups/minus_life.png');
+        this.load.image('plus_life', 'assets/powerups/plus_life.png');
     }
 
     create()

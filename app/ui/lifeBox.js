@@ -1,9 +1,9 @@
-class LivesBox extends Phaser.GameObjects.Container {
+class LifeBox extends Phaser.GameObjects.Container {
 
     constructor(scene) {
         super(scene);
         this.scene = scene;
-        this.labelPrefix = 'LIVES: ';
+        this.labelPrefix = 'LIFE: ';
 
         this.text1 = this.scene.add.text(0,0, this.labelPrefix + session.lives);
         this.text1.setOrigin(1, 0);

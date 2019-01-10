@@ -10,6 +10,7 @@ class GlassBrick extends AbstractBrick {
     {
         emitter.emit(msgs.PLAY_SOUND, 'click');
         session.score += this.scoreCost;
+        this.scene.GeneratePowerup(ball);
         if (!this.visible && this.body.gameObject.active) {
             this.visible = true;
         }

@@ -29,7 +29,7 @@ class AbstractLevel extends Phaser.Scene {
         this.scoreBox.x = 20;
         this.scoreBox.y = 10;
 
-        this.scoreBox = new LivesBox(this);
+        this.scoreBox = new LifeBox(this);
         this.scoreBox.x = game.config.width - 20;
         this.scoreBox.y = 10;
 
@@ -45,6 +45,7 @@ class AbstractLevel extends Phaser.Scene {
 
         this.ball = new Ball(this, game);
         this.paddle = new Paddle(this, game);
+        this.powerup = null;
 
         this.physics.add.collider(this.ball, this.paddle, this.paddle.HitPaddle, null, this.paddle);
         this.physics.add.collider(this.ball, this.bricks, this.HitBrick, null, this);
@@ -56,6 +57,8 @@ class AbstractLevel extends Phaser.Scene {
         emitter.on(msgs.LEVEL_COMPLETED, this.startNextLevel, this);
         emitter.on(msgs.LEVEL_BOMB_DROPPED, this.explodeEverything, this);
         emitter.on(msgs.EXPLODE_EXPOSIVE, this.explodeExplosive, this);
+        emitter.on(msgs.LOG_SCENE, function() {console.log(this)}, this);
+        emitter.on(msgs.CREATE_POWERUP, this.GeneratePowerup, this);
     }
 
     onWorldBounds(body) {
@@ -106,16 +109,25 @@ class AbstractLevel extends Phaser.Scene {
 
         if (this.ball.y > game.config.height + 18)
         {
-            if (session.lives > 0) {
-                this.ball.ResetBall();
-                this.paddle.ResetPaddle();
-                session.lives--;
-            }
-            else {
-                this.ball.y = 10;
-                this.ball.disableBody(true, true);
-                this.scene.start('SceneGameOver');
-            }
+            this.BallLost();
+        }
+
+        if ((this.powerup) && (this.powerup.y > game.config.height + 18)) {
+            this.powerup.DestroyC();
+            console.log('powerup missed');
+        }
+    }
+
+    BallLost() {
+        if (session.lives > 0) {
+            this.ball.ResetBall();
+            this.paddle.ResetPaddle();
+            session.lives--;
+        }
+        else {
+            this.ball.y = 10;
+            this.ball.disableBody(true, true);
+            this.scene.start('SceneGameOver');
         }
     }
 
@@ -162,5 +174,22 @@ class AbstractLevel extends Phaser.Scene {
         lc.yBrickCount = 12;
         lc.xOffset = Math.round((game.config.width - lc.bW*lc.yBrickCount)/2);
         return lc;
+    }
+
+    GeneratePowerup(ball) {
+        if (!this.powerup) {
+            if (!ball) {
+                ball = this.ball;
+            }
+            let pw = Powerup.GetRandom(this, ball);
+            if (pw) {
+                this.powerup = pw;
+                this.physics.add.collider(this.paddle, this.powerup, this.powerup.Activate, null, this.powerup);
+            }
+        }
+    }
+
+    ClearPowerup() {
+        this.powerup = null;
     }
 }

@@ -10,6 +10,9 @@ class EmitterMsgs {
         this.LEVEL_COMPLETED = 'levelCompleted';
         this.LEVEL_BOMB_DROPPED = 'levelBombDropped';
         this.EXPLODE_EXPOSIVE = 'explodeExplosive';
+        this.LOG_SCENE = 'logScene';
+
+        this.CREATE_POWERUP = 'createPowerup';
 
         this.PLAY_SOUND = 'playSound';
     }
