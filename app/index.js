@@ -18,6 +18,7 @@ window.onload = function() {
             }
         },
         scene: [
+            new SceneLoad(),
             new SceneTitle(),
             new Level1(),
             new Level2(),

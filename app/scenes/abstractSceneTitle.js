@@ -7,9 +7,6 @@ class AbstractSceneTitle extends Phaser.Scene {
     }
     preload()
     {
-        this.load.image('sky', 'assets/sky.png');
-        this.load.image('title', 'assets/title.png');
-        this.load.image('btn', 'assets/ui/buttons/2/5.png');
     }
 
     create()
