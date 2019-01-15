@@ -1,4 +1,10 @@
-class Level2 extends AbstractLevel {
+import AbstractLevel from './abstractLevel.js';
+import GenericBrick from '../../gameObjects/bricks/genericBrick.js';
+import StripedBrick from '../../gameObjects/bricks/stripedBrick.js';
+import GlassBrick from '../../gameObjects/bricks/glassBrick.js';
+import ExplosiveBrick from '../../gameObjects/bricks/explosiveBrick.js';
+
+export default class Level2 extends AbstractLevel {
 
     constructor()
     {

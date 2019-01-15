@@ -1,4 +1,4 @@
-class EmitterMsgs {
+export default class EmitterMsgs {
 
     constructor() {
         this.INC_SCORE = 'incScore';

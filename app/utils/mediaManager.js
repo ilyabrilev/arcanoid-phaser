@@ -1,4 +1,4 @@
-class MediaManager {
+export default class MediaManager {
 
     constructor(scene) {
         this.scene = scene;

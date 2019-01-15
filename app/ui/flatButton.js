@@ -1,4 +1,4 @@
-class FlatButton extends Phaser.GameObjects.Container {
+export default class FlatButton extends Phaser.GameObjects.Container {
 
     constructor(conf) {
         super(conf.scene);

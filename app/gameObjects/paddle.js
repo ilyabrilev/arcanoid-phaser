@@ -1,4 +1,4 @@
-class Paddle extends Phaser.Physics.Arcade.Sprite {
+export default class Paddle extends Phaser.Physics.Arcade.Sprite {
 
     constructor(scene, _game) {
         super(scene, _game.config.width/2, _game.config.height - 10, 'paddle');

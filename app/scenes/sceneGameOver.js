@@ -1,4 +1,6 @@
-class SceneGameOver extends AbstractSceneTitle {
+import AbstractSceneTitle from './abstractSceneTitle.js';
+
+export default class SceneGameOver extends AbstractSceneTitle {
 
     constructor()
     {

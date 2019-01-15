@@ -1,4 +1,6 @@
-class SfxBtn extends FlatButton {
+import FlatButton from './flatButton.js';
+
+export default class SfxButton extends FlatButton {
 
     constructor(scene) {
 

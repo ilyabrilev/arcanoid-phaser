@@ -1,4 +1,6 @@
-class GlassBrick extends AbstractBrick {
+import AbstractBrick from './abstractBrick.js';
+
+export default class GlassBrick extends AbstractBrick {
 
     constructor(brickCollection, scene, x, y) {
         super(brickCollection, scene, x, y, 'glassBrick');

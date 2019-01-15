@@ -1,4 +1,6 @@
-class AbstractSceneTitle extends Phaser.Scene {
+import FlatButton from '../ui/flatButton.js';
+
+export default class AbstractSceneTitle extends Phaser.Scene {
 
     constructor(sceneStr, textButton)
     {
@@ -12,7 +14,6 @@ class AbstractSceneTitle extends Phaser.Scene {
     create()
     {
         emitter = new Phaser.Events.EventEmitter();
-        controller = new Controller(session, emitter);
 
         this.add.image(400, 300, 'sky');
         this.add.image(game.config.width/2, game.config.height/2 - 50, 'title');

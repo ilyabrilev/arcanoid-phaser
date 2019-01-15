@@ -1,4 +1,6 @@
-class PauseScene extends Phaser.Scene {
+import FlatButton from '../ui/flatButton.js';
+
+export default class PauseScene extends Phaser.Scene {
 
     constructor(prevScene)
     {

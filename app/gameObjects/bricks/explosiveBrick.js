@@ -1,4 +1,6 @@
-class ExplosiveBrick extends AbstractBrick {
+import AbstractBrick from './abstractBrick.js';
+
+export default class ExplosiveBrick extends AbstractBrick {
 
     constructor(brickCollection, scene, x, y) {
         super(brickCollection, scene, x, y, 'explosiveBrick');

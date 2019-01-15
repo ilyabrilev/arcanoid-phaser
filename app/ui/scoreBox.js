@@ -1,4 +1,4 @@
-class ScoreBox extends Phaser.GameObjects.Container {
+export default class ScoreBox extends Phaser.GameObjects.Container {
 
     constructor(scene) {
         super(scene);

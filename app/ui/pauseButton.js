@@ -1,4 +1,6 @@
-class PauseButton extends FlatButton {
+import FlatButton from './flatButton.js';
+
+export default class PauseButton extends FlatButton {
 
     constructor(scene) {
         super({scene: scene, img: 'pauseBtn' });

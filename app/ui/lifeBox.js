@@ -1,4 +1,4 @@
-class LifeBox extends Phaser.GameObjects.Container {
+export default class LifeBox extends Phaser.GameObjects.Container {
 
     constructor(scene) {
         super(scene);

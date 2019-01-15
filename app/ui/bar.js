@@ -1,4 +1,4 @@
-class Bar extends Phaser.GameObjects.Container {
+export default class Bar extends Phaser.GameObjects.Container {
 
     constructor(conf) {
         super(conf.scene);

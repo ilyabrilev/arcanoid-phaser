@@ -1,4 +1,6 @@
-class MinusLifePowerup extends Powerup {
+import Powerup from './powerup.js';
+
+export default class MinusLifePowerup extends Powerup {
 
     constructor(scene, ball) {
         super(scene, ball, 'minus_life', '-1');

@@ -1,4 +1,6 @@
-class SceneLoad extends Phaser.Scene {
+import Bar from '../ui/bar.js'
+
+export default class SceneLoad extends Phaser.Scene {
 
     constructor(sceneStr)
     {

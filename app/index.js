@@ -1,8 +1,13 @@
-var game;
-var session;
-var emitter;
-var msgs;
-var controller;
+import EmitterMsgs from './utils/emitterMsgs.js';
+
+import GameSession from './gameSession.js';
+import SceneLoad from './scenes/sceneLoad.js';
+import SceneTitle from './scenes/sceneTitle.js';
+import Level1 from './scenes/levels/level1.js';
+import Level2 from './scenes/levels/level2.js';
+import SceneGameOver from './scenes/sceneGameOver.js';
+import PauseScene from './scenes/pauseScene.js';
+import SceneGameVictory from './scenes/sceneGameVictory.js';
 
 window.onload = function() {
 

@@ -1,4 +1,4 @@
-class GameSession {
+export default class GameSession {
     constructor(_inputLives = 1) {
         this.score = 0;
         this.lives = _inputLives;
@@ -32,5 +32,4 @@ class GameSession {
             emitter.emit(msgs.SCORE_UPDATED, this._score);
         }
     }
-
 }

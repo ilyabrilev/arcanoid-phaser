@@ -1,4 +1,4 @@
-class AbstractBrick extends Phaser.Physics.Arcade.Sprite{
+export default class AbstractBrick extends Phaser.Physics.Arcade.Sprite{
 
     constructor(brickCollection, scene, x, y, key) {
         super(scene, x, y, key);
@@ -22,7 +22,6 @@ class AbstractBrick extends Phaser.Physics.Arcade.Sprite{
         emitter.emit(msgs.PLAY_SOUND, 'click');
         session.score += this.scoreCost;
         emitter.emit(msgs.CREATE_POWERUP, ball);
-        //this.scene.GeneratePowerup(ball);
     }
 
 }

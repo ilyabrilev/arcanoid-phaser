@@ -1,4 +1,15 @@
-class AbstractLevel extends Phaser.Scene {
+import MediaManager from '../../utils/mediaManager.js'
+import Controller from '../../utils/controller.js'
+import PowerupController from '../../gameObjects/powerups/powerupsController.js';
+import Ball from '../../gameObjects/ball.js';
+import Paddle from '../../gameObjects/paddle.js';
+
+import ScoreBox from '../../ui/scoreBox.js';
+import LifeBox from '../../ui/lifeBox.js';
+import PauseButton from '../../ui/pauseButton.js';
+import SfxButton from '../../ui/sfxButton.js';
+
+export default class AbstractLevel extends Phaser.Scene {
 
     constructor(sceneName, nextLevel)
     {
@@ -7,10 +18,6 @@ class AbstractLevel extends Phaser.Scene {
         this.isPausePermitted = true;
         this.nextLevel = nextLevel;
         this.startNextLevelLock = false;
-    }
-
-    preload()
-    {
     }
 
     create()
@@ -37,7 +44,7 @@ class AbstractLevel extends Phaser.Scene {
         this.pauseButton.x = game.config.width - 30;
         this.pauseButton.y = 60;
 
-        this.sfxBtn = new SfxBtn(this);
+        this.sfxBtn = new SfxButton(this);
         this.sfxBtn.x = game.config.width - 30;
         this.sfxBtn.y = 60 + 40;
 
@@ -114,7 +121,6 @@ class AbstractLevel extends Phaser.Scene {
 
         if ((this.powerup) && (this.powerup.y > game.config.height + 18)) {
             this.powerup.DestroyC();
-            console.log('powerup missed');
         }
     }
 
@@ -181,7 +187,7 @@ class AbstractLevel extends Phaser.Scene {
             if (!ball) {
                 ball = this.ball;
             }
-            let pw = Powerup.GetRandom(this, ball);
+            let pw = PowerupController.GetRandom(this, ball);
             if (pw) {
                 this.powerup = pw;
                 this.physics.add.collider(this.paddle, this.powerup, this.powerup.Activate, null, this.powerup);

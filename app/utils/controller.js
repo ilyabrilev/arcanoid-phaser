@@ -1,4 +1,4 @@
-class Controller {
+export default class Controller {
 
     /**
      * @param {GameSession} _gameSession
